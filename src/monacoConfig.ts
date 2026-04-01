@@ -107,8 +107,6 @@ export function defineScreenplayTheme(monaco: typeof Monaco) {
 
 export function getEditorOptions(): Monaco.editor.IStandaloneEditorConstructionOptions {
   return {
-    theme: 'vibe-dark',
-    language: SCREENPLAY_LANG_ID,
     fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
     fontSize: 13,
     lineHeight: 24,

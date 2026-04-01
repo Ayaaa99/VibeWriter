@@ -165,7 +165,7 @@ export default function ScriptEditor() {
         <Editor
           defaultValue={editorContent}
           defaultLanguage={SCREENPLAY_LANG_ID}
-          theme="vibe-dark"
+          theme={theme === 'dark' ? 'vibe-dark' : 'vibe-light'}
           onMount={handleEditorMount}
           options={getEditorOptions()}
           loading={

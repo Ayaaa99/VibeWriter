@@ -2,6 +2,9 @@ import { create } from 'zustand'
 import type { Scene, ChatMessage, ViewMode, AITab } from './types'
 
 interface AppState {
+  theme: 'dark' | 'light'
+  toggleTheme: () => void
+
   viewMode: ViewMode
   setViewMode: (mode: ViewMode) => void
 
@@ -163,6 +166,13 @@ const mockMessages: ChatMessage[] = [
 ]
 
 export const useStore = create<AppState>((set) => ({
+  theme: 'dark',
+  toggleTheme: () => set((s) => {
+    const next = s.theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.setAttribute('data-theme', next)
+    return { theme: next }
+  }),
+
   viewMode: 'editor',
   setViewMode: (mode) => set({ viewMode: mode }),
 

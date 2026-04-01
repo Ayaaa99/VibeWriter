@@ -1,8 +1,8 @@
 import { useStore } from '../store'
-import { PanelRight, Settings, Grid2x2 } from 'lucide-react'
+import { PanelRight, Settings, Grid2x2, Sun, Moon } from 'lucide-react'
 
 export default function TopBar() {
-  const { viewMode, setViewMode, toggleAIPanel, aiPanelOpen } = useStore()
+  const { viewMode, setViewMode, toggleAIPanel, aiPanelOpen, theme, toggleTheme } = useStore()
 
   return (
     <div className="topbar">
@@ -38,8 +38,8 @@ export default function TopBar() {
             <PanelRight size={16} style={{ opacity: aiPanelOpen ? 1 : 0.5 }} />
           </button>
         )}
-        <button className="icon-btn" title="Overview">
-          <Grid2x2 size={16} />
+        <button className="icon-btn" onClick={toggleTheme} title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
         </button>
         <button className="icon-btn" title="Settings">
           <Settings size={16} />

@@ -70,6 +70,39 @@ export function defineScreenplayTheme(monaco: typeof Monaco) {
       'minimap.background': '#1a1b20',
     },
   })
+
+  monaco.editor.defineTheme('vibe-light', {
+    base: 'vs',
+    inherit: true,
+    rules: [
+      { token: 'scene-heading', foreground: '1a6db5', fontStyle: 'bold' },
+      { token: 'character-name', foreground: 'b87a10', fontStyle: 'bold' },
+      { token: 'parenthetical', foreground: '6b6b6b', fontStyle: 'italic' },
+      { token: 'transition', foreground: '534AB7', fontStyle: 'bold' },
+      { token: 'action', foreground: '1a1a1a' },
+    ],
+    colors: {
+      'editor.background': '#fafaf8',
+      'editor.foreground': '#1a1a1a',
+      'editor.lineHighlightBackground': '#00000006',
+      'editor.selectionBackground': '#5a8a1a28',
+      'editorLineNumber.foreground': '#b0b0a8',
+      'editorLineNumber.activeForeground': '#6b6b6b',
+      'editorCursor.foreground': '#4a7a14',
+      'editor.selectionHighlightBackground': '#5a8a1a18',
+      'editorIndentGuide.background': '#e0e0dc',
+      'editorWidget.background': '#ffffff',
+      'editorWidget.border': '#ddddd8',
+      'editorSuggestWidget.background': '#ffffff',
+      'editorSuggestWidget.border': '#ddddd8',
+      'editorSuggestWidget.selectedBackground': '#f0f0ec',
+      'scrollbarSlider.background': '#c5c5c060',
+      'scrollbarSlider.hoverBackground': '#a8a8a4',
+      'scrollbarSlider.activeBackground': '#a8a8a4',
+      'editorOverviewRuler.border': '#00000000',
+      'minimap.background': '#fafaf8',
+    },
+  })
 }
 
 export function getEditorOptions(): Monaco.editor.IStandaloneEditorConstructionOptions {

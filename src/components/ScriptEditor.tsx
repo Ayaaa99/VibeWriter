@@ -15,7 +15,7 @@ function scenesToText(lines: { type: string; text: string }[]): string {
 }
 
 export default function ScriptEditor() {
-  const { scenes, activeSceneId, setActiveScene, applyCorrection } = useStore()
+  const { scenes, activeSceneId, setActiveScene, applyCorrection, theme } = useStore()
   const editorRef = useRef<Monaco.editor.IStandaloneCodeEditor | null>(null)
   const monacoRef = useRef<typeof Monaco | null>(null)
   const decorationsRef = useRef<string[]>([])
@@ -89,7 +89,7 @@ export default function ScriptEditor() {
     styleEl.textContent = `
       .squiggly-error {
         text-decoration: wavy underline !important;
-        text-decoration-color: #f09595 !important;
+        text-decoration-color: var(--text-error, #f09595) !important;
         text-underline-offset: 3px;
         cursor: pointer !important;
       }
@@ -135,6 +135,13 @@ export default function ScriptEditor() {
     setTimeout(updateDecorations, 50)
   }, [activeScene, updateDecorations])
 
+  // Switch Monaco theme when app theme changes
+  useEffect(() => {
+    const monaco = monacoRef.current
+    if (!monaco) return
+    monaco.editor.setTheme(theme === 'dark' ? 'vibe-dark' : 'vibe-light')
+  }, [theme])
+
   if (!activeScene) return <div className="editor-area" />
 
   return (
@@ -167,8 +174,8 @@ export default function ScriptEditor() {
               alignItems: 'center',
               justifyContent: 'center',
               height: '100%',
-              background: '#1a1b20',
-              color: '#55575e',
+              background: 'var(--bg-editor)',
+              color: 'var(--text-tertiary)',
               fontSize: 13,
               fontFamily: 'var(--font-ui)',
             }}>
